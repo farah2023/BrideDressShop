@@ -1,0 +1,401 @@
+<!-- <div class="home-page">
+  <div class="header-image">
+    <div class="overlay">
+      <h1 class="text-center">Dobrodošli u AgroPharm poljoprivrednu apoteku</h1>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="card filter-container shadow-sm p-4">
+      <div class="card-header bg-success text-white">
+        Pretraži proizvode
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input type="text" class="form-control form-control-lg" placeholder="Pretraži proizvode po imenu"
+              [(ngModel)]="searchTerm" (input)="filterProducts()" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <select class="form-control form-control-lg" [(ngModel)]="selectedCategory" (change)="filterProducts()">
+              <option value="">Sve kategorije</option>
+              <option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts">
+        <div class="card h-100 mb-4 shadow-sm">
+          <img src="{{ product.imageUrl }}" class="card-img-top" alt="{{ product.name }}"
+            style="max-height: 200px; object-fit: cover" />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Opis: {{ product.description }}</p>
+            <p class="card-text">Cena: {{ product.price | currency: 'RSD ' }}</p>
+            <p class="card-text">Kategorija: {{ product.category.name }}</p>
+            <p class="card-text" *ngIf="currentUser?.role === 'ADMIN' || currentUser?.role === 'SELLER'">
+              Stanje na zalihama: {{ product.supplies }}
+            </p>
+            <a (click)="addToCart(product)" class="btn btn-primary bg-danger mt-auto"
+              *ngIf="currentUser?.role === 'CLIENT'">Dodaj u korpu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<section>
+  <div id="main_slider" class="carousel slide banner-main" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#main_slider" data-slide-to="0" class="active"></li>
+      <li data-target="#main_slider" data-slide-to="1"></li>
+      <li data-target="#main_slider" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="row marginii">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="carousel-caption ">
+                <h1>Welcome To The <strong class="color">Nutrients Plants</strong></h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                  looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                  distribution of letters, as opposed to using</p>
+                <a style="width: 190px;" class="btn btn-lg btn-primary" href="#" role="button">About</a>
+                <a style="width: 190px;" class="btn btn-lg btn-primary" href="#" role="button">Contact US</a>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="img-box">
+                <figure><img style="border-radius: 50%;height: 500px;" src="images/gyufyufyu.png" alt="img" /></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row marginii">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="carousel-caption ">
+                <h1>Welcome To The <strong class="color">Nutrients Plants</strong></h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                  looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                  distribution of letters, as opposed to using</p>
+                <a class="btn btn-lg btn-primary" href="#" role="button">About</a>
+                <a class="btn btn-lg btn-primary" href="#" role="button">Contact US</a>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="img-box ">
+                <figure><img src="images/gyufyufyu.png" alt="img" /></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row marginii">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="carousel-caption ">
+                <h1>Welcome To The <strong class="color">Nutrients Plants</strong></h1>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                  looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                  distribution of letters, as opposed to using</p>
+                <a class="btn btn-lg btn-primary" href="#" role="button">About</a>
+                <a class="btn btn-lg btn-primary" href="#" role="button">Contact US</a>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="img-box">
+                <figure><img src="images/gyufyufyu.png" alt="img" /></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+      <i class='fa fa-angle-left'></i></a>
+    <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+      <i class='fa fa-angle-right'></i>
+    </a>
+  </div>
+</section>
+<!-- plant -->
+<div id="plant" class="plants">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="titlepage">
+          <h2>Our Wonderful plants</h2>
+          <span>Discover our selection of beautiful plants for your home and garden</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let product of filteredProducts" class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+        <div class="plants-box">
+          <figure>
+            <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
+          </figure>
+          <div class="plant-details">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <div class="product-info">
+              <p class="price">{{ product.price }} DH</p>
+              <p class="category">Category: {{ product.category.name }}</p>
+
+              <!-- Show supplies only for ADMIN or SELLER -->
+              <p class="supplies" *ngIf="currentUser?.role === 'ADMIN' || currentUser?.role === 'SELLER'">
+                Stock: {{ product.supplies }}
+              </p>
+
+              <!-- Add to cart button only for CLIENT -->
+              <button *ngIf="currentUser?.role === 'CLIENT'" (click)="addToCart(product)" class="btn btn-primary">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end plant -->
+<!-- about -->
+<div id="about" class="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="about-box">
+            <h2>50</h2>
+            <div class="white-bg">
+              <span>Satisfaction</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="about-box">
+            <h2>50</h2>
+            <div class="white-bg">
+              <span>Free Delivery</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="about-box">
+            <h2>50</h2>
+            <div class="white-bg">
+              <span>Store Locators</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="about-box">
+          <div class="titlepage">
+            <h2>About US</h2>
+            <span>It is a long established fact that a reader will be distracted by the readable content of a page when
+              looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
+              letters, as opposed to using 'Content here, content here', making it look like readable English. Many
+              desktop publishing packages and It is a long established fact that a reader will be distracted by the
+              readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+              more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it
+              look like readable English. Many desktop publishing packages and web pageweb page</span>
+            <div class="read-more">
+              <a href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end about -->
+<!--Gallery -->
+<div id="gallery" class="Gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="titlepage">
+          <h2>Our Gallery </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid margin-r-l">
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 thumb">
+        <div class="Gallery-box">
+          <figure>
+            <a href="images/gal1.jpg" class="fancybox" rel="ligthbox">
+              <img src="images/gal1.jpg" class="zoom img-fluid " alt="">
+            </a>
+            <span class="hoverle">
+              <a href="images/1.jpg" class="fancybox" rel="ligthbox">View</a>
+            </span>
+          </figure>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 thumb">
+        <div class="Gallery-box">
+          <figure>
+            <a href="images/gal2.jpg" class="fancybox" rel="ligthbox">
+              <img src="images/gal2.jpg" class="zoom img-fluid " alt="">
+            </a>
+            <span class="hoverle">
+              <a href="images/1.jpg" class="fancybox" rel="ligthbox">View</a>
+            </span>
+          </figure>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 thumb">
+        <div class="Gallery-box">
+          <figure>
+            <a href="images/gal5.jpg" class="fancybox" rel="ligthbox">
+              <img src="images/gal5.jpg" class="zoom img-fluid " alt="">
+            </a>
+            <span class="hoverle">
+              <a href="images/3.jpg" class="fancybox" rel="ligthbox">View</a>
+            </span>
+          </figure>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 thumb">
+        <div class="Gallery-box">
+          <figure>
+            <a href="images/gal4.jpg" class="fancybox" rel="ligthbox">
+              <img src="images/gal4.jpg" class="zoom img-fluid " alt="">
+            </a>
+            <span class="hoverle">
+              <a href="images/4.jpg" class="fancybox" rel="ligthbox">View</a>
+            </span>
+          </figure>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 thumb">
+        <div class="Gallery-box">
+          <figure>
+            <a href="images/gal3.jpg" class="fancybox" rel="ligthbox">
+              <img src="images/gal3.jpg" class="zoom img-fluid " alt="">
+            </a>
+            <span class="hoverle">
+              <a href="images/5.jpg" class="fancybox" rel="ligthbox">View</a>
+            </span>
+          </figure>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="Gallery-box">
+          <figure>
+            <a href="images/gal6.jpg" class="fancybox" rel="ligthbox">
+              <img src="images/gal6.jpg" class="zoom img-fluid " alt="">
+            </a>
+            <span class="hoverle">
+              <a href="images/6.jpg" class="fancybox" rel="ligthbox">View</a>
+            </span>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end Gallery -->
+  <!--contact -->
+  <div id="contact" class="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="titlepage">
+            <h2>Contact Us</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 paddimg-right">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <form class="contactus">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <input class="form-control" placeholder="Name" type="text" name="Name">
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <input class="form-control" placeholder="Email" type="text" name="Email">
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <input class="form-control" placeholder="Phone" type="text" name="Phone">
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <textarea class="textarea>" placeholder="Message" type="text" name="Message"></textarea>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <a href="#">Read More</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="map_section">
+                <figure><img src="images/map.jpg"></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 paddimg-left">
+          <div class="Nursery-img">
+            <figure>
+              <img src="images/contactimg.jpg" alt="img" />
+              <div class="text-box">
+                <h3>Best Green Nursery</h3>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascript files-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery-3.0.0.min.js"></script>
+    <script src="/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <!-- javascript -->
+    <script src="/js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".fancybox").fancybox({
+          openEffect: "none",
+          closeEffect: "none"
+        });
+
+        $(".zoom").hover(function () {
+
+          $(this).addClass('transition');
+        }, function () {
+
+          $(this).removeClass('transition');
+        });
+      });
+
+    </script>
+  </div>
