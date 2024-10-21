@@ -3,14 +3,14 @@ import { ProductCreation } from '../model/product.model';
 import { Category } from '../model/category.model';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2'; // Importing SweetAlert for notifications
 
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
-  styleUrl: './create-product.component.css'
+  styleUrls: ['./create-product.component.css'] // Fixed typo from styleUrl to styleUrls
 })
-export class CreateProductComponent implements OnInit{
+export class CreateProductComponent implements OnInit {
   product: ProductCreation = {
     name: '',
     description: '',
@@ -23,7 +23,7 @@ export class CreateProductComponent implements OnInit{
 
   categories: Category[] = [];
 
-  constructor(private productService: ProductService, private router: Router, private toastr: ToastrService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.productService.getAllCategories().subscribe(data => {
@@ -34,11 +34,21 @@ export class CreateProductComponent implements OnInit{
   onSubmit(): void {
     this.productService.createProduct(this.product).subscribe(response => {
       console.log('Product created successfully', response);
-      this.toastr.success('Proizvod je uspešno kreiran', 'Uspeh');
-      this.router.navigate(['/all-products']); 
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Product has been created successfully.',
+        confirmButtonText: 'OK'
+      });
+      this.router.navigate(['/all-products']);
     }, error => {
       console.error('Error creating product', error);
-      this.toastr.error('Greška prilikom kreiranja proizvoda', 'Greška');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while creating the product.',
+        confirmButtonText: 'OK'
+      });
     });
   }
 }

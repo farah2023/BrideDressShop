@@ -46,5 +46,4 @@ public class AuthentificationController {
         return ResponseEntity.ok(new TokenDTO(jwt, expiresIn));
     }
 
-    // prilikom registracije koristi String hashedPassword = passwordEncoder.encode(rawPassword);
 }

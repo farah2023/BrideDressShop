@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Address, User } from '../../auth/model/auth.model';
 import { AuthService } from '../../auth/auth.service';
-import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-profile',
   templateUrl: './client-profile.component.html',
-  styleUrl: './client-profile.component.css'
+  styleUrls: ['./client-profile.component.css'] // Fixed typo from styleUrl to styleUrls
 })
 export class ClientProfileComponent implements OnInit {
   user: User | undefined;
   isEditing = false;
 
-  constructor(private authService: AuthService, private toastr: ToastrService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.getUser().subscribe((user: User) => {
@@ -25,24 +25,38 @@ export class ClientProfileComponent implements OnInit {
   }
 
   saveChanges(): void {
-    if (this.user){
+    if (this.user) {
       this.authService.updateUser(this.user).subscribe(
         () => {
           this.isEditing = false;
-          this.toastr.success('Podaci uspešno izmenjeni!', 'Uspeh');
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Data has been successfully updated!',
+            confirmButtonText: 'OK'
+          });
         },
         (error) => {
-          this.toastr.error('Došlo je do greške prilikom čuvanja.', 'Greška');
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while saving.',
+            confirmButtonText: 'OK'
+          });
         }
       );
     } else {
-      this.toastr.error('Podaci o korisniku nisu učitani.', 'Greška' );
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'User data could not be loaded.',
+        confirmButtonText: 'OK'
+      });
     }
   }
-  
 
   cancelEdit(): void {
     this.isEditing = false;
-    this.ngOnInit(); 
+    this.ngOnInit();
   }
 }

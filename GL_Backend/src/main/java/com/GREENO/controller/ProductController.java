@@ -42,7 +42,7 @@ public class ProductController {
     public ResponseEntity<String> createProduct(@RequestBody ProductCreationDTO productCreationDTO) {
         try {
             Product createdProduct = productService.createProduct(productCreationDTO);
-            String content = "Novi proizvod je dodat.";
+            String content = "New product has been added.";
 
 
         }catch (Exception e){
@@ -55,7 +55,7 @@ public class ProductController {
     public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productUpdateDTO) {
         try {
             Product updatedProduct = productService.updateProduct(id, productUpdateDTO);
-            String content = "Proizvod " + productUpdateDTO.name + " je izmenjen.";
+            String content = "Product " + productUpdateDTO.name + " has been modified.";
 
 
         }catch (Exception e){
@@ -68,7 +68,7 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
         try {
             productService.deleteProduct(id);
-            String content = "Proizvod sa brojem " + id + " je obrisan.";
+            String content = "Product with number " + id + " has been deleted.";
           
 
         }catch (Exception e){

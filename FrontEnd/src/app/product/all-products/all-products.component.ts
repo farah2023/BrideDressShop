@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from '../model/product.model';
 import { CartService } from '../cart.service';
-import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 import { AuthService } from '../../auth/auth.service';
 import { CurrentUser } from '../../auth/model/auth.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { Category } from '../model/category.model';
 @Component({
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
-  styleUrl: './all-products.component.css'
+  styleUrls: ['./all-products.component.css'] // Fixed typo from styleUrl to styleUrls
 })
 export class AllProductsComponent implements OnInit {
   products: Product[] = [];
@@ -26,8 +26,12 @@ export class AllProductsComponent implements OnInit {
   selectedCategory: string = '';
   filteredProducts: Product[] = [];
 
-
-  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService, private authService: AuthService, private modalService: NgbModal) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private authService: AuthService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -66,12 +70,17 @@ export class AllProductsComponent implements OnInit {
     });
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product): void {
     this.cartService.addToCart(product);
-    this.toastr.success('Proizvod ' + product.name + ' je dodat u korpu', 'Uspeh');
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: `Product ${product.name} has been added to the cart.`,
+      confirmButtonText: 'OK'
+    });
   }
 
-  openEditModal(product: Product) {
+  openEditModal(product: Product): void {
     const modalRef = this.modalService.open(EditProductComponent);
     modalRef.componentInstance.product = { ...product };
 
@@ -84,19 +93,29 @@ export class AllProductsComponent implements OnInit {
     });
   }
 
-  deleteProduct(productId: number, productName: string) {
+  deleteProduct(productId: number, productName: string): void {
     const modalRef = this.modalService.open(ConfirmDeleteComponent);
     modalRef.componentInstance.productName = productName;
-  
+
     modalRef.result.then((result) => {
       if (result === 'confirm') {
         this.productService.deleteProduct(productId).subscribe(
           () => {
-            this.toastr.success('Proizvod je uspešno obrisan', 'Uspeh');
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Product has been successfully deleted.',
+              confirmButtonText: 'OK'
+            });
             this.loadProducts();
           },
           (error) => {
-            this.toastr.error('Došlo je do greške prilikom brisanja proizvoda', 'Greška');
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'An error occurred while deleting the product.',
+              confirmButtonText: 'OK'
+            });
           }
         );
       }
@@ -104,6 +123,4 @@ export class AllProductsComponent implements OnInit {
       console.log('Modal dismissed');
     });
   }
-
-
 }

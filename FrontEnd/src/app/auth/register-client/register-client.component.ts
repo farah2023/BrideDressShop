@@ -24,7 +24,7 @@ export class RegisterClientComponent {
     userType: 'client'
   };
 
-  constructor(private authStervice: AuthService, private toastr: ToastrService) {}
+  constructor(private authStervice: AuthService, private toastr: ToastrService) { }
 
   onSubmit() {
     this.authStervice.registerUser(this.user).subscribe(
