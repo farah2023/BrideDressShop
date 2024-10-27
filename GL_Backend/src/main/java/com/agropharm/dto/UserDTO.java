@@ -1,6 +1,5 @@
 package com.agropharm.dto;
 
-import com.agropharm.domain.User;
 import com.agropharm.mapper.DTOEntity;
 
 public class UserDTO implements DTOEntity {
@@ -11,6 +10,7 @@ public class UserDTO implements DTOEntity {
     public AddressDTO address;
     public String phoneNumber;
     public RoleDTO role;
+
 
     public UserDTO(){
     }

@@ -1,8 +1,7 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.Address;
-import com.agropharm.domain.Admin;
-import com.agropharm.domain.Client;
+import com.agropharm.Entities.Address;
+import com.agropharm.Entities.Admin;
 import com.agropharm.dto.RegistrationDTO;
 import com.agropharm.repository.AddressRepository;
 import com.agropharm.repository.AdminRepository;
@@ -43,6 +42,5 @@ public class AdminService {
         admin.setLastPasswordResetDate(new Timestamp(new Date().getTime()));
         admin.setRole(roleRepository.findByName("ADMIN"));
         return adminRepository.save(admin);
-        // test test git git allah
     }
 }

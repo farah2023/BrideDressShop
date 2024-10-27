@@ -1,11 +1,10 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.*;
-import com.agropharm.domain.enums.OrderStatus;
+import com.agropharm.Entities.*;
+import com.agropharm.Entities.enums.OrderStatus;
 import com.agropharm.dto.OrderItemDTO;
 import com.agropharm.dto.OrderRequestDTO;
 import com.agropharm.repository.*;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,10 +1,9 @@
-package com.agropharm.domain;
+package com.agropharm.Entities;
 
-import com.agropharm.domain.enums.OrderStatus;
+import com.agropharm.Entities.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Entity

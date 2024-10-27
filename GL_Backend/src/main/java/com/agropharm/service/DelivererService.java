@@ -1,8 +1,7 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.Address;
-import com.agropharm.domain.Deliverer;
-import com.agropharm.domain.Seller;
+import com.agropharm.Entities.Address;
+import com.agropharm.Entities.Deliverer;
 import com.agropharm.dto.RegistrationDTO;
 import com.agropharm.repository.AddressRepository;
 import com.agropharm.repository.DelivererRepository;

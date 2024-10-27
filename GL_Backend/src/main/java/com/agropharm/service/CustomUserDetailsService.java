@@ -1,6 +1,6 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.User;
+import com.agropharm.Entities.User;
 import com.agropharm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

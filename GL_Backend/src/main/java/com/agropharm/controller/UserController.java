@@ -1,7 +1,6 @@
 package com.agropharm.controller;
 
-import com.agropharm.domain.User;
-import com.agropharm.dto.ProductDTO;
+import com.agropharm.Entities.User;
 import com.agropharm.dto.RegistrationDTO;
 import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
@@ -12,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -81,5 +82,20 @@ public class UserController {
         }
         return new ResponseEntity<>("User successfully registered", HttpStatus.OK);
     }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable Integer userId) {
+        try {
+            userService.deleteUser(userId);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User successfully deleted");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Error deleting user: " + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

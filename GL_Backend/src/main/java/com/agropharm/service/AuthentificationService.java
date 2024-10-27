@@ -1,6 +1,5 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.User;
 import com.agropharm.dto.LoginDTO;
 import com.agropharm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

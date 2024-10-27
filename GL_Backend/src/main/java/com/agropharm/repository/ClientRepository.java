@@ -1,6 +1,6 @@
 package com.agropharm.repository;
 
-import com.agropharm.domain.Client;
+import com.agropharm.Entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientRepository extends JpaRepository<Client, Integer> {

@@ -1,11 +1,9 @@
 package com.agropharm.dto;
 
-import com.agropharm.domain.OrderItem;
-import com.agropharm.domain.enums.OrderStatus;
+import com.agropharm.Entities.enums.OrderStatus;
 import com.agropharm.mapper.DTOEntity;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 public class OrderDTO implements DTOEntity {

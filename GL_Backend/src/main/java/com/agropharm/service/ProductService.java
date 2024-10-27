@@ -1,18 +1,15 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.Category;
-import com.agropharm.domain.Product;
+import com.agropharm.Entities.Category;
+import com.agropharm.Entities.Product;
 import com.agropharm.dto.ProductCreationDTO;
 import com.agropharm.dto.ProductDTO;
 import com.agropharm.repository.CategoryRepository;
 import com.agropharm.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service

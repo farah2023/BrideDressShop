@@ -1,6 +1,6 @@
 package com.agropharm.repository;
 
-import com.agropharm.domain.User;
+import com.agropharm.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

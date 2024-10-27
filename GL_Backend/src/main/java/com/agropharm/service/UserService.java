@@ -1,6 +1,6 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.*;
+import com.agropharm.Entities.*;
 import com.agropharm.dto.RegistrationDTO;
 import com.agropharm.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,15 @@ public class UserService {
     }
 
 
+    public void awardPenaltyPoints(Integer userId) throws Exception {
+        Optional<Client> clientDB = clientRepository.findById(userId);
+        if (!clientDB.isPresent()) {
+            throw new Exception("Client not found");
+        }
+        Client client = clientDB.get();
+        client.setPenaltyPoints(5);
+        clientRepository.save(client);
+    }
 
     public User save(User user){
         return userRepository.save(user);
@@ -101,5 +110,14 @@ public class UserService {
 
         return user;
     }
+
+    public void deleteUser(Integer userId) throws Exception {
+        Optional<User> user = userRepository.findById(userId);
+        if (!user.isPresent()) {
+            throw new Exception("User not found");
+        }
+        userRepository.deleteById(userId);
+    }
+
 
 }

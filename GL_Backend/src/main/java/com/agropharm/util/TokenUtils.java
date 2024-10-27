@@ -2,7 +2,7 @@ package com.agropharm.util;
 
 
 import org.springframework.stereotype.Component;
-import com.agropharm.domain.User;
+import com.agropharm.Entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

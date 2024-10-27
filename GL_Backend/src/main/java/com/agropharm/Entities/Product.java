@@ -1,4 +1,4 @@
-package com.agropharm.domain;
+package com.agropharm.Entities;
 
 
 import javax.persistence.*;

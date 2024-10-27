@@ -1,4 +1,4 @@
-package com.agropharm.domain.enums;
+package com.agropharm.Entities.enums;
 
 public enum OrderStatus {
     CREATED,

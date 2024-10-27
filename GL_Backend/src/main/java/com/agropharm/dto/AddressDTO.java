@@ -1,6 +1,5 @@
 package com.agropharm.dto;
 
-import com.agropharm.domain.Address;
 import com.agropharm.mapper.DTOEntity;
 
 public class AddressDTO implements DTOEntity {

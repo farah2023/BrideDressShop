@@ -1,6 +1,5 @@
 package com.agropharm.dto;
 
-import com.agropharm.domain.Role;
 import com.agropharm.mapper.DTOEntity;
 
 public class RoleDTO implements DTOEntity {

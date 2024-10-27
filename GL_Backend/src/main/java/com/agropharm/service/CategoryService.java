@@ -1,7 +1,6 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.Category;
-import com.agropharm.domain.Product;
+import com.agropharm.Entities.Category;
 import com.agropharm.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,5 @@
 package com.agropharm.dto;
 
-import com.agropharm.domain.Address;
-import com.agropharm.domain.OrderItem;
-import com.agropharm.domain.User;
-
 import java.util.List;
 
 public class OrderRequestDTO {

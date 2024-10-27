@@ -7,7 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.agropharm.domain.User;
+import com.agropharm.Entities.User;
 import com.agropharm.dto.LoginDTO;
 import com.agropharm.dto.TokenDTO;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +45,4 @@ public class AuthentificationController {
 
         return ResponseEntity.ok(new TokenDTO(jwt, expiresIn));
     }
-
-    // prilikom registracije koristi String hashedPassword = passwordEncoder.encode(rawPassword);
 }

@@ -1,11 +1,12 @@
 package com.agropharm.controller;
 
-import com.agropharm.domain.Product;
+import com.agropharm.Entities.Product;
 import com.agropharm.dto.CategoryDTO;
 import com.agropharm.dto.ProductCreationDTO;
 import com.agropharm.dto.ProductDTO;
 import com.agropharm.mapper.DTOUtils;
 import com.agropharm.service.CategoryService;
+import com.agropharm.service.NotificationService;
 import com.agropharm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,8 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
-
+    @Autowired
+    private NotificationService notificationService;
 
     @GetMapping("/all")
     public ResponseEntity<Set<ProductDTO>> getAll() {
@@ -43,7 +45,7 @@ public class ProductController {
         try {
             Product createdProduct = productService.createProduct(productCreationDTO);
             String content = "Novi proizvod je dodat.";
-
+            notificationService.createNotificationForAllUsersByRole("Novi proizvod", content, "SELLER");
 
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
@@ -56,7 +58,7 @@ public class ProductController {
         try {
             Product updatedProduct = productService.updateProduct(id, productUpdateDTO);
             String content = "Proizvod " + productUpdateDTO.name + " je izmenjen.";
-
+            notificationService.createNotificationForAllUsersByRole("Proizvod izmenjen", content, "SELLER");
 
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
@@ -69,7 +71,7 @@ public class ProductController {
         try {
             productService.deleteProduct(id);
             String content = "Proizvod sa brojem " + id + " je obrisan.";
-          
+            notificationService.createNotificationForAllUsersByRole("Proizvod obrisan", content, "SELLER");
 
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
