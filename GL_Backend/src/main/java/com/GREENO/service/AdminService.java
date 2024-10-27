@@ -1,0 +1,55 @@
+package com.GREENO.service;
+
+<<<<<<< HEAD:GL_Backend/src/main/java/com/agropharm/service/AdminService.java
+import com.agropharm.Entities.Address;
+import com.agropharm.Entities.Admin;
+import com.agropharm.dto.RegistrationDTO;
+import com.agropharm.repository.AddressRepository;
+import com.agropharm.repository.AdminRepository;
+import com.agropharm.repository.RoleRepository;
+=======
+import com.GREENO.domain.Address;
+import com.GREENO.domain.Admin;
+import com.GREENO.dto.RegistrationDTO;
+import com.GREENO.repository.AddressRepository;
+import com.GREENO.repository.AdminRepository;
+import com.GREENO.repository.RoleRepository;
+>>>>>>> de9fc5b09f3308f3c484e231cf77dd7f463a83c3:GL_Backend/src/main/java/com/GREENO/service/AdminService.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.util.Date;
+
+@Service
+public class AdminService {
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
+    private AddressRepository addressRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
+    public Admin create(RegistrationDTO registrationDTO) {
+        Admin admin = new Admin();
+        admin.setFirstName(registrationDTO.firstName);
+        admin.setLastName(registrationDTO.lastName);
+        admin.setEmail(registrationDTO.email);
+        admin.setPhoneNumber(registrationDTO.phoneNumber);
+        admin.setPassword(registrationDTO.password);
+        admin.setSenior(registrationDTO.isSenior);
+
+        Address address = new Address();
+        address.setStreet(registrationDTO.street);
+        address.setStreetNumber(registrationDTO.streetNumber);
+        address.setCity(registrationDTO.city);
+        address.setCountry(registrationDTO.country);
+        address.setPostalCode(registrationDTO.postalCode);
+        addressRepository.save(address);
+
+        admin.setAddress(address);
+        admin.setLastPasswordResetDate(new Timestamp(new Date().getTime()));
+        admin.setRole(roleRepository.findByName("ADMIN"));
+        return adminRepository.save(admin);
+    }
+}

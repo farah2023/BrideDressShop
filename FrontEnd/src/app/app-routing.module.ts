@@ -7,7 +7,6 @@ import { ClientProfileComponent } from './client/client-profile/client-profile.c
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { CartComponent } from './product/cart/cart.component';
-import { UnauthenticatedOrderComponent } from './product/unauthenticated-order/unauthenticated-order.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
 import { RegisterClientComponent } from './auth/register-client/register-client.component';
 import { AllUsersComponent } from './admin/all-users/all-users.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ClientProfileComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
   { path: 'create-product', component: CreateProductComponent },
   { path: 'register-client', component: RegisterClientComponent },
   { path: 'all-users', component: AllUsersComponent },
