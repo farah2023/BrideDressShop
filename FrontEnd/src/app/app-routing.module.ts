@@ -19,27 +19,27 @@ import { AllUsersComponent } from './admin/all-users/all-users.component';
 import { NotificationsComponent } from './common/notifications/notifications.component';
 
 const routes: Routes = [
-  {path: '',  component: HomeComponent},
-  {path: 'all-products', component: AllProductsComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ClientProfileComponent},
-  {path: 'seller-orders', component: OrdersComponent},
-  {path: 'all-orders', component: AllOrdersComponent},
-  {path: 'client-orders', component: ClientOrdersComponent},
-  {path: 'deliverer-orders', component: DelivererOrdersComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
-  {path: 'create-product', component: CreateProductComponent},
-  {path: 'register-user', component: RegisterUserComponent},
-  {path: 'register-client', component: RegisterClientComponent},
-  {path: 'all-users', component: AllUsersComponent},
-  {path: 'notifications', component: NotificationsComponent},
+  { path: '', component: HomeComponent },
+  { path: 'all-products', component: AllProductsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ClientProfileComponent },
+  { path: 'seller-orders', component: OrdersComponent },
+  { path: 'all-orders', component: AllOrdersComponent },
+  { path: 'client-orders', component: ClientOrdersComponent },
+  { path: 'deliverer-orders', component: DelivererOrdersComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
+  { path: 'create-product', component: CreateProductComponent },
+  { path: 'register-user', component: RegisterUserComponent },
+  { path: 'register-client', component: RegisterClientComponent },
+  { path: 'all-users', component: AllUsersComponent },
+  { path: 'notifications', component: NotificationsComponent },
 
 
 
 
-  
-  
+
+
 ];
 
 @NgModule({

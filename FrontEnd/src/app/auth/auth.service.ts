@@ -78,9 +78,10 @@ export class AuthService {
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(environment.apiHost + 'users/update', user);
   }
-
-  registerUser(user: UserRegistration): Observable<any> {
-    return this.http.post<any>(environment.apiHost + `users/register`, user);
+  registerUser(user: UserRegistration): Observable<string> {
+    return this.http.post(environment.apiHost + `users/register`, user, {
+      responseType: 'text'  // This is the key change
+    });
   }
 
   getAllUsers(): Observable<UserWRole[]> {

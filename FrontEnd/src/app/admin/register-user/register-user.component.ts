@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { UserRegistration } from '../../auth/model/auth.model';
-import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
-  styleUrl: './register-user.component.css'
+  styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent {
   user: UserRegistration = {
@@ -24,26 +24,29 @@ export class RegisterUserComponent {
     userType: ''
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) { }
 
   onSubmit() {
     this.authService.registerUser(this.user).subscribe(
       response => {
         console.log('User successfully registered', response);
-        Swal.fire({
-          title: 'Success',
-          text: 'User successfully registered!',
-          icon: 'success',
-          confirmButtonText: 'OK'
+        this.toastr.success('User successfully registered!', 'Success', {
+          timeOut: 3000,
+          positionClass: 'toast-bottom-right', // Positions the toastr notification
+          closeButton: true,
+          progressBar: true,
         });
       },
       error => {
         console.error('Error registering user', error);
-        Swal.fire({
-          title: 'Error',
-          text: 'Error while registering user. Please try again.',
-          icon: 'error',
-          confirmButtonText: 'OK'
+        this.toastr.error('Error while registering user. Please try again.', 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-bottom-right', // Positions the toastr notification
+          closeButton: true,
+          progressBar: true,
         });
       }
     );
