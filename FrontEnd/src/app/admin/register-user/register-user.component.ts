@@ -35,7 +35,7 @@ export class RegisterUserComponent {
         console.log('User successfully registered', response);
         this.toastr.success('User successfully registered!', 'Success', {
           timeOut: 3000,
-          positionClass: 'toast-bottom-right', // Positions the toastr notification
+          positionClass: 'toast-bottom-right',
           closeButton: true,
           progressBar: true,
         });
@@ -44,7 +44,7 @@ export class RegisterUserComponent {
         console.error('Error registering user', error);
         this.toastr.error('Error while registering user. Please try again.', 'Error', {
           timeOut: 3000,
-          positionClass: 'toast-bottom-right', // Positions the toastr notification
+          positionClass: 'toast-bottom-right',
           closeButton: true,
           progressBar: true,
         });

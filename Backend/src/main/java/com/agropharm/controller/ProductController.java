@@ -44,39 +44,38 @@ public class ProductController {
     public ResponseEntity<String> createProduct(@RequestBody ProductCreationDTO productCreationDTO) {
         try {
             Product createdProduct = productService.createProduct(productCreationDTO);
-            String content = "Novi proizvod je dodat.";
-            notificationService.createNotificationForAllUsersByRole("Novi proizvod", content, "SELLER");
+            String content = "New product has been added.";
+            notificationService.createNotificationForAllUsersByRole("New Product", content, "SELLER");
 
-        }catch (Exception e){
+            return ResponseEntity.ok().body("{\"message\": \"You have successfully added new product\"}");
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
-        return ResponseEntity.ok().body("{\"message\": \"You have successfully added new product\"}");
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productUpdateDTO) {
         try {
             Product updatedProduct = productService.updateProduct(id, productUpdateDTO);
-            String content = "Proizvod " + productUpdateDTO.name + " je izmenjen.";
-            notificationService.createNotificationForAllUsersByRole("Proizvod izmenjen", content, "SELLER");
+            String content = "Product " + productUpdateDTO.name + " has been updated.";
+            notificationService.createNotificationForAllUsersByRole("Product Updated", content, "SELLER");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
-        return ResponseEntity.ok().body("{\"message\": \"You have successfully updated product\"}");
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully updated the product\"}");
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
         try {
             productService.deleteProduct(id);
-            String content = "Proizvod sa brojem " + id + " je obrisan.";
-            notificationService.createNotificationForAllUsersByRole("Proizvod obrisan", content, "SELLER");
+            String content = "Product with ID " + id + " has been deleted.";
+            notificationService.createNotificationForAllUsersByRole("Product Deleted", content, "SELLER");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
-        return ResponseEntity.ok().body("{\"message\": \"You have successfully deleted product\"}");
-
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully deleted the product\"}");
     }
 }

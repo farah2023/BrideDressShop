@@ -32,8 +32,6 @@ public class AuthentificationController {
     @PostMapping("/login")
     public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginDto, HttpServletResponse response) {
 
-        String saltedPassword = authentificationService.getSaltedPassword(loginDto);
-
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getEmail(), loginDto.getPassword()));
 

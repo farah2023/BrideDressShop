@@ -30,11 +30,11 @@ export class RegisterClientComponent {
     this.authStervice.registerUser(this.user).subscribe(
       response => {
         console.log('User successfully registered', response);
-        this.toastr.success('Korisnik uspešno registrovan!', 'Uspeh');
+        this.toastr.success('User successfully registered!', 'Success');
       },
       error => {
         console.error('Error registering user', error);
-        this.toastr.success('Korisnik uspešno registrovan!', 'Uspeh');
+        this.toastr.error('Registration failed!', 'Error');
       }
     );
   }
