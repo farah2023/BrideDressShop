@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container" *ngIf="user">
+    <div class="profile-container">
+      <div class="row g-0">
+        <!-- Section image de profil -->
+        <div class="col-md-4 profile-image-section">
+          <img src="/images/client.png" alt="Profile" class="profile-image">
+          <h3 class="text-white mb-2">{{user.firstName}} {{user.lastName}}</h3>
+          <p class="text-white-50">{{user.email}}</p>
+        </div>
+
+        <!-- Section formulaire -->
+        <div class="col-md-8 p-4 formulaire">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <h5 class="section-title">Informations de base</h5>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" [(ngModel)]="user.email" readonly>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Prénom</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.firstName" [disabled]="!isEditing">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Nom</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.lastName" [disabled]="!isEditing">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Téléphone</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.phoneNumber" [disabled]="!isEditing">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <h5 class="section-title">Adresse</h5>
+                <div class="mb-3" *ngIf="user.address">
+                  <label class="form-label">Rue</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.address.street" [disabled]="!isEditing">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Numéro</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.address.streetNumber"
+                    [disabled]="!isEditing">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Ville</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.address.city" [disabled]="!isEditing">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Code postal</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.address.postalCode" [disabled]="!isEditing">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Pays</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.address.country" [disabled]="!isEditing">
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 text-center">
+              <button class="btn btn-edit mx-2" *ngIf="!isEditing" (click)="toggleEdit()">
+                Modifier
+              </button>
+              <button class="btn btn-success mx-2" *ngIf="isEditing" (click)="saveChanges()">
+                Enregistrer
+              </button>
+              <button class="btn btn-danger mx-2" *ngIf="isEditing" (click)="cancelEdit()">
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

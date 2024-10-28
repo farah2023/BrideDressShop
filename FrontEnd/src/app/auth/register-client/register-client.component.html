@@ -1,0 +1,174 @@
+<!-- <div class="container mt-5">
+    <h2 class="text-center mb-4">Registracija novog klijenta</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="shadow p-4 rounded bg-white">
+                <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password">Lozinka</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="firstName">Ime</label>
+                    <input type="text" class="form-control" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="lastName">Prezime</label>
+                    <input type="text" class="form-control" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="phoneNumber">Telefon</label>
+                    <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="street">Ulica</label>
+                    <input type="text" class="form-control" id="street" [(ngModel)]="user.street" name="street" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="streetNumber">Broj</label>
+                    <input type="text" class="form-control" id="streetNumber" [(ngModel)]="user.streetNumber" name="streetNumber" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="city">Grad</label>
+                    <input type="text" class="form-control" id="city" [(ngModel)]="user.city" name="city" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="postalCode">Poštanski broj</label>
+                    <input type="text" class="form-control" id="postalCode" [(ngModel)]="user.postalCode" name="postalCode" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="country">Država</label>
+                    <input type="text" class="form-control" id="country" [(ngModel)]="user.country" name="country" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Registruj</button>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<body>
+
+    <div class="wrapper">
+        <img src="/images/img.png" alt="">
+        <h2 class="text-right">Welcome</h2>
+
+        <div class="form-wrapper register">
+            <form (ngSubmit)="onSubmit()" #userForm="ngForm" action="">
+                <h2>Registration</h2>
+
+                <div class="input-row">
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <input type="text" placeholder="Full Name" [(ngModel)]="user.firstName" name="firstName"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <input type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+                        <input type="email" placeholder="Email" [(ngModel)]="user.email" name="email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        <input type="password" placeholder="Password" [(ngModel)]="user.password" name="password"
+                            required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-phone"></i>
+                        </span>
+                        <input type="text" placeholder="Phone" [(ngModel)]="user.phoneNumber" name="phoneNumber"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-house"></i>
+                        </span>
+                        <input type="text" placeholder="Street" [(ngModel)]="user.street" name="street" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-123"></i>
+                        </span>
+                        <input type="text" placeholder="Street Number" [(ngModel)]="user.streetNumber"
+                            name="streetNumber" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </span>
+                        <input type="text" placeholder="City" [(ngModel)]="user.city" name="city" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-mailbox"></i>
+                        </span>
+                        <input type="text" placeholder="Postal Code" [(ngModel)]="user.postalCode" name="postalCode"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <i class="bi bi-globe"></i>
+                        </span>
+                        <input type="text" placeholder="Country" [(ngModel)]="user.country" name="country" required>
+                    </div>
+                </div>
+
+                <button type="submit">Register</button>
+                <div class="sign-link">
+                    <p>Already have an account? <a href="#" onclick="loginActive()">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+
+            /* Adjust spacing as needed */
+        }
+
+        .input-box {
+            flex: 1;
+            /* Allows input boxes to share the same width */
+            margin-right: 1rem;
+            /* Space between the two inputs */
+        }
+
+        .input-box:last-child {
+            margin-right: 0;
+            /* Removes margin from the last input in a row */
+        }
+    </style>
+</body>

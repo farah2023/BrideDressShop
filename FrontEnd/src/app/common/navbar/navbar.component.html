@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- style css -->
+<link rel="stylesheet" href="/css/style.css">
+<!-- Responsive-->
+<link rel="stylesheet" href="/css/responsive.css">
+
+<header style="margin-bottom: 150px;">
+  <!-- header inner -->
+  <div class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+          <div class="full">
+            <div class="center-desk">
+              <div class="logo"> <a href="index.html"><img src="/images/logo.png" alt="#"></a> </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+          <div class="menu-area">
+            <div class="limit-box">
+              <nav class="main-menu">
+                <ul class="menu-area-main">
+                  <!-- Public links -->
+                  <li class="nav-item" *ngIf="!currentUser?.role">
+                    <a href="/login">Login</a>
+                  </li>
+                  <li class="nav-item" *ngIf="!currentUser?.role">
+                    <a href="/register-client">Register</a>
+                  </li>
+                  <li class="active">
+                    <a href="/">Home</a>
+                  </li>
+
+                  <!-- Admin links -->
+                  <li class="active" *ngIf="currentUser?.role === 'ADMIN'">
+                    <a href="/profile">Admin Profile</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'ADMIN'">
+                    <a href="/all-orders">Orders</a>
+                  </li>
+                  <li *ngIf="currentUser?.role === 'ADMIN'">
+                    <a href="/all-products">Products</a>
+                  </li>
+                  <li *ngIf="currentUser?.role === 'ADMIN'">
+                    <a href="/register-user">User Registration</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'ADMIN'">
+                    <a href="/all-users">Users</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'ADMIN'">
+                    <a href="/notifications">Notifications</a>
+                  </li>
+
+                  <!-- Seller links -->
+                  <li class="active" *ngIf="currentUser?.role === 'SELLER'">
+                    <a href="/profile">Seller Profile</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'SELLER'">
+                    <a href="/seller-orders">Orders</a>
+                  </li>
+                  <li *ngIf="currentUser?.role === 'SELLER'">
+                    <a href="/all-products">Products</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'SELLER'">
+                    <a href="/notifications">Notifications</a>
+                  </li>
+
+                  <!-- Deliverer links -->
+                  <li class="active" *ngIf="currentUser?.role === 'DELIVERER'">
+                    <a href="/profile">Deliverer Profile</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'DELIVERER'">
+                    <a href="/deliverer-orders">Orders</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'DELIVERER'">
+                    <a href="/notifications">Notifications</a>
+                  </li>
+
+                  <!-- Client links -->
+                  <li *ngIf="currentUser?.role === 'CLIENT'">
+                    <a href="/profile">Client Profile</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'CLIENT'">
+                    <a href="/client-orders">Orders</a>
+                  </li>
+                  <li *ngIf="currentUser?.role === 'CLIENT'">
+                    <a href="/all-products">Products</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'CLIENT'">
+                    <a href="/cart">Cart</a>
+                  </li>
+                  <li class="active" *ngIf="currentUser?.role === 'CLIENT'">
+                    <a href="/notifications">Notifications</a>
+                  </li>
+
+                  <!-- Logout link -->
+                  <li *ngIf="currentUser?.role" (click)="onLogout()">
+                    <a href="/">Logout</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end header inner -->
+</header>
