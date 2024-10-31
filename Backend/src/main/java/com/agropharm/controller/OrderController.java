@@ -162,7 +162,7 @@ public class OrderController {
                 emailBody += "- " + item.getProduct().getName() + " x" + item.getQuantity() + "\n";
             }
 
-            emailBody += "\n HI: $\n\n" +
+            emailBody +=
                     "Thank you for choosing our service!\n\n" +
                     "Best regards,\n" +
                     "Your Company Name";
@@ -181,9 +181,7 @@ public class OrderController {
             orderService.updateOrderStatus(orderId, OrderStatus.DELIVERY_COMPLETED_UNSUCCESSFULLY);
             Order order = orderService.getById(orderId);
 
-            userService.awardPenaltyPoints(order.getClient().getId());
-
-            String content = "Your order number " + order.getId() + " was not successfully received. You have received 5 penalty points";
+            String content = "Your order number " + order.getId() + " was not successfully received.";
             notificationService.createNotification("Order Not Collected", content, order.getClient().getEmail());
 
             // Send email to the client
