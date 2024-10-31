@@ -33,7 +33,7 @@ public class OrderController {
     private NotificationService notificationService;
 
     @Autowired
-    private EmailService emailService; // Inject EmailService
+    private EmailService emailService;
 
     @GetMapping("/all")
     public ResponseEntity<Set<OrderDTO>> getAll(HttpServletRequest request) {
@@ -108,11 +108,11 @@ public class OrderController {
             orderService.assignDeliverer(orderId, deliverer);
             Order order = orderService.getById(orderId);
 
-            // Create notification
+
             String content = "Products from order number " + order.getId() + " have been collected for delivery.";
             notificationService.createNotification("Package Collected for Delivery", content, order.getClient().getEmail());
 
-            // Send email
+
             String toEmail = order.getClient().getEmail();
             String subject = "Order #" + order.getId() + " Collected for Delivery";
             String emailBody = "Dear " + order.getClient().getFirstName() + ",\n\n" +
@@ -141,11 +141,11 @@ public class OrderController {
             orderService.updateOrderStatus(orderId, OrderStatus.DELIVERY_COMPLETED_SUCCESSFULLY);
             Order order = orderService.getById(orderId);
 
-            // Create notification
+
             String content = "Your order #" + order.getId() + " has been successfully delivered.";
             notificationService.createNotification("Order Delivered Successfully", content, order.getClient().getEmail());
 
-            // Send email
+
             String toEmail = order.getClient().getEmail();
             String subject = "Order #" + order.getId() + " Successfully Delivered";
             String emailBody = "Dear " + order.getClient().getFirstName() + ",\n\n" +
@@ -157,7 +157,7 @@ public class OrderController {
                     order.getAddress().getCity() + "\n\n" +
                     "Items:\n";
 
-            // Add order items to email
+
             for (OrderItem item : order.getOrderItems()) {
                 emailBody += "- " + item.getProduct().getName() + " x" + item.getQuantity() + "\n";
             }
@@ -184,7 +184,7 @@ public class OrderController {
             String content = "Your order number " + order.getId() + " was not successfully received.";
             notificationService.createNotification("Order Not Collected", content, order.getClient().getEmail());
 
-            // Send email to the client
+
             String toEmail = order.getClient().getEmail();
             String subject = "Delivery Unsuccessful for Order #" + order.getId();
             String emailBody = "Dear " + order.getClient().getFirstName() + ",\n\n" +
