@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Orders Page - Client View</title>
+</head>
+
+<body>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Orders</h2>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header bg-success">
+        Filter Orders
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="statusFilter" class="form-label">Status:</label>
+            <select id="statusFilter" class="form-control" [(ngModel)]="selectedStatus"
+              (ngModelChange)="applyFilters()">
+              <option value="">All statuses</option>
+              <option *ngFor="let status of orderStatuses" [value]="statusTranslations[status]">{{
+                statusTranslations[status] }}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="productFilter" class="form-label">Product:</label>
+            <input id="productFilter" class="form-control" [(ngModel)]="productFilter" (ngModelChange)="applyFilters()"
+              placeholder="Product name" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let order of filteredOrders">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header bg-warning">
+            <h5 class="mb-0">Order #{{ order.id }}</h5>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Date: {{ order.date | date:'medium' }}</h5>
+            <div class="mb-3">
+              <h5 class="card-title">Status: <span class="badge bg-success">{{ statusTranslations[order.status]
+                  }}</span></h5>
+            </div>
+            <ul class="list-group mb-3">
+              <li class="list-group-item">
+                <strong>Client:</strong> {{ order.client.firstName }} {{ order.client.lastName }}
+              </li>
+              <li class="list-group-item">
+                <strong>Phone:</strong> {{ order.client.phoneNumber }}
+              </li>
+              <li class="list-group-item">
+                <strong>Email:</strong> {{ order.client.email }}
+              </li>
+              <li class="list-group-item">
+                <strong>Delivery Address:</strong> {{ order.address.street }} {{ order.address.streetNumber }}, {{
+                order.address.city }}, {{ order.address.country }} - Postal Code: {{ order.address.postalCode }}
+              </li>
+            </ul>
+            <h6 class="card-title">Products in Order:</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Total Product Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.orderItems">
+                  <td>{{ item.product.name }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.product.price | currency:'USD ' }}</td>
+                  <td>{{ item.price | currency:'USD ' }}</td>
+                </tr>
+                <tr>
+                  <th colspan="3">Total Order Price</th>
+                  <th>{{ order.totalPrice | currency: 'USD '}}</th>
+                </tr>
+              </tbody>
+            </table>
+            <button *ngIf="order.status === 'CREATED'" class="btn btn-primary" (click)="cancelOrder(order.id)">Cancel
+              Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

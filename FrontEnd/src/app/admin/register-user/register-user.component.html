@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container registration-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <div class="form-icon">
+                    <img src="/images/client.png" alt="Register Icon">
+                </div>
+                <h2>Créer un compte</h2>
+                <p class="mb-0">Rejoignez-nous en quelques étapes simples</p>
+            </div>
+
+            <div class="form-container">
+                <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-section">
+                                <h3 class="section-title">Informations personnelles</h3>
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" [(ngModel)]="user.email"
+                                        name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="password">Mot de passe</label>
+                                    <input type="password" class="form-control" id="password"
+                                        [(ngModel)]="user.password" name="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="firstName">Prénom</label>
+                                    <input type="text" class="form-control" id="firstName" [(ngModel)]="user.firstName"
+                                        name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lastName">Nom</label>
+                                    <input type="text" class="form-control" id="lastName" [(ngModel)]="user.lastName"
+                                        name="lastName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phoneNumber">Téléphone</label>
+                                    <input type="text" class="form-control" id="phoneNumber"
+                                        [(ngModel)]="user.phoneNumber" name="phoneNumber" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-section">
+                                <h3 class="section-title">Adresse</h3>
+                                <div class="form-group">
+                                    <label class="form-label" for="street">Rue</label>
+                                    <input type="text" class="form-control" id="street" [(ngModel)]="user.street"
+                                        name="street" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="streetNumber">Numéro</label>
+                                    <input type="text" class="form-control" id="streetNumber"
+                                        [(ngModel)]="user.streetNumber" name="streetNumber" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="city">Ville</label>
+                                    <input type="text" class="form-control" id="city" [(ngModel)]="user.city"
+                                        name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="postalCode">Code postal</label>
+                                    <input type="text" class="form-control" id="postalCode"
+                                        [(ngModel)]="user.postalCode" name="postalCode" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="country">Pays</label>
+                                    <input type="text" class="form-control" id="country" [(ngModel)]="user.country"
+                                        name="country" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-title">Type de compte</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="userType">Type d'utilisateur</label>
+                            <select class="form-control" id="userType" [(ngModel)]="user.userType" name="userType"
+                                required>
+                                <option value="admin">Administrateur</option>
+                                <option value="seller">Vendeur</option>
+                                <option value="deliverer">Livreur</option>
+                            </select>
+                        </div>
+
+                        <div *ngIf="user.userType === 'admin'" class="custom-checkbox">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="isSenior"
+                                    [(ngModel)]="user.isSenior" name="isSenior">
+                                <label class="form-check-label" for="isSenior">Senior administrateur</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-register w-100">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

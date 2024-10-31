@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Orders Page - Extended</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+        }
+
+        .card-header {
+            padding: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bg-success {
+            background: linear-gradient(45deg, #43cea2, #189d42);
+            color: white;
+        }
+
+        .bg-warning {
+            background: linear-gradient(45deg, #ffd452, #ff7b54);
+            color: white;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .form-control,
+        .btn {
+            border-radius: 10px;
+            border: none;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+
+        .btn {
+            padding: 12px 25px;
+
+            width: 430px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #00f2fe 0%, #4facfe 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #43cea2 0%, #189d3c 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(45deg, #185a9d 0%, #43cea2 100%);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff416c 0%, #ff4b2b 100%);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(45deg, #ff4b2b 0%, #ff416c 100%);
+        }
+
+        .list-group-item {
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .row {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Orders</h2>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header bg-success">
+                Filter Orders
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="statusFilter" class="form-label">Status:</label>
+                        <select id="statusFilter" class="form-control" [(ngModel)]="selectedStatus"
+                            (ngModelChange)="applyFilters()">
+                            <option value="">All statuses</option>
+                            <option *ngFor="let status of orderStatuses" [value]="statusTranslations[status]">{{
+                                statusTranslations[status] }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="delivererFilter" class="form-label">Deliverer:</label>
+                        <input id="delivererFilter" class="form-control" [(ngModel)]="delivererFilter"
+                            (ngModelChange)="applyFilters()" placeholder="Deliverer's first or last name" />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="addressFilter" class="form-label">Address:</label>
+                        <input id="addressFilter" class="form-control" [(ngModel)]="addressFilter"
+                            (ngModelChange)="applyFilters()" placeholder="Street, city, country" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dateSort" class="form-label">Sort by date:</label>
+                        <select id="dateSort" class="form-control" [(ngModel)]="dateSortOrder"
+                            (ngModelChange)="sortOrders()">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let order of filteredOrders">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header bg-warning">
+                        Order #{{ order.id }} - {{ order.date | date:'medium' }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Client: {{ order.client.firstName }} {{ order.client.lastName }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Order Status: {{ statusTranslations[order.status] }}
+                        </h6>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item">
+                                <strong>Client Phone Number:</strong> {{ order.client.phoneNumber }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Delivery Address:</strong> {{ order.address.street }} {{
+                                order.address.streetNumber }}, {{
+                                order.address.city }}, {{ order.address.country }} - Postal Code: {{
+                                order.address.postalCode }}
+                            </li>
+                            <li class="list-group-item" *ngIf="order.deliverer">
+                                <strong>Deliverer:</strong> {{ order.deliverer.firstName }} {{ order.deliverer.lastName
+                                }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Total Order Price:</strong> {{ order.totalPrice | currency: 'USD ' }}
+                            </li>
+                        </ul>
+
+                        <button *ngIf="order.status === 'APPROVED'" class="btn btn-primary"
+                            (click)="markOrderCollectedForDelivery(order.id)">Mark Order as Collected for
+                            Delivery</button>
+                        <button *ngIf="order.status === 'COLLECTED_FOR_DELIVERY'" class="btn btn-success"
+                            (click)="markOrderAsSuccesfullyDelivered(order.id)">Mark Order as Successfully
+                            Delivered</button>
+                        <button *ngIf="order.status === 'COLLECTED_FOR_DELIVERY'" class="btn btn-danger"
+                            (click)="markOrderAsUnuccesfullyDelivered(order.id)">Mark Order as Unsuccessfully
+                            Delivered</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
