@@ -14,7 +14,6 @@ export class AllUsersComponent implements OnInit {
   clients: UserWRole[] = [];
   workers: UserWRole[] = [];
 
-  // Role translations in English
   roleTranslations: any = {
     'ADMIN': 'Administrator',
     'DELIVERER': 'Delivery Person',
@@ -29,7 +28,6 @@ export class AllUsersComponent implements OnInit {
   }
 
   loadUsers() {
-    // Show loading state
     Swal.fire({
       title: 'Loading Users',
       text: 'Please wait...',
@@ -43,6 +41,10 @@ export class AllUsersComponent implements OnInit {
       next: (data: UserWRole[]) => {
         this.users = data;
         this.splitUsersByRole();
+        console.log('All users:', this.users);
+        this.splitUsersByRole();
+        console.log('Clients:', this.clients);
+        console.log('Workers:', this.workers);
         Swal.close();
       },
       error: (error) => {
@@ -97,7 +99,7 @@ export class AllUsersComponent implements OnInit {
               confirmButtonText: 'OK',
               confirmButtonColor: '#28a745'
             }).then(() => {
-              this.loadUsers(); // Reload the users list after confirmation
+              this.loadUsers();
             });
           },
           error: (error) => {
@@ -115,9 +117,8 @@ export class AllUsersComponent implements OnInit {
     });
   }
   enableUser(userId: number, isEnabled: boolean) {
-    // Show loading state
     Swal.fire({
-      title: isEnabled ? 'Enabling User' : 'Disabling User',
+      title: `${isEnabled ? 'Enabling' : 'Disabling'} User`,
       text: 'Please wait...',
       allowOutsideClick: false,
       didOpen: () => {
@@ -127,7 +128,17 @@ export class AllUsersComponent implements OnInit {
 
     this.authService.enableDisableUser(userId, isEnabled).subscribe({
       next: (response) => {
-        console.log('Response:', response);
+        // Update the local user list immediately
+        if (response) {
+          // Find and update the user in both clients and workers arrays
+          this.clients = this.clients.map(client =>
+            client.id === userId ? { ...client, isEnabled: isEnabled } : client
+          );
+          this.workers = this.workers.map(worker =>
+            worker.id === userId ? { ...worker, isEnabled: isEnabled } : worker
+          );
+        }
+
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -135,8 +146,6 @@ export class AllUsersComponent implements OnInit {
           showConfirmButton: true,
           confirmButtonText: 'OK',
           confirmButtonColor: '#28a745'
-        }).then(() => {
-          this.loadUsers(); // Reload the users list after confirmation
         });
       },
       error: (error) => {
@@ -150,7 +159,6 @@ export class AllUsersComponent implements OnInit {
         });
       }
     });
-
   }
 
 }

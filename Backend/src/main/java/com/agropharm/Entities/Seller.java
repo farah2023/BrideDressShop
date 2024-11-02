@@ -16,7 +16,7 @@ public class Seller extends User{
 
     }
 
-    public Boolean getEnabled() {
+    public Boolean getIsEnabled() {
         return isEnabled;
     }
 

@@ -98,9 +98,9 @@ public class UserController {
         }
     }
     @PutMapping("/update-status/{userId}")
-    public ResponseEntity<String> updateUserStatus(@PathVariable Integer userId, @RequestBody Map<String, Boolean> request) {
+    public ResponseEntity<UserDTO> updateUserStatus(@PathVariable Integer userId, @RequestBody Map<String, Boolean> request) {
         boolean isEnabled = request.get("isEnabled");
-        User user = userService.getUserById(userId); // Fetch the user entity
+        User user = userService.getUserById(userId);
 
         if (user instanceof Client) {
             clientService.updateUserStatus(userId, isEnabled);
@@ -111,12 +111,12 @@ public class UserController {
         } else if (user instanceof Admin) {
             adminService.updateUserStatus(userId, isEnabled);
         } else {
-            System.out.println("User role not recognized for user ID: " + userId);
-            return new ResponseEntity<>("User role not recognized", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        System.out.println("User status updated successfully for user ID: " + userId + " to isEnabled: " + isEnabled);
-        return new ResponseEntity<>("User status updated successfully", HttpStatus.OK);
+        User updatedUser = userService.getUserById(userId);
+        UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(updatedUser, new UserDTO());
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
 

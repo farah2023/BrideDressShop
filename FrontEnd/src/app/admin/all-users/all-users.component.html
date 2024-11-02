@@ -175,46 +175,46 @@
 </style>
 
 <div class="container">
-  <div class="page-header">
-    <h1 class="page-title">User Management</h1>
-  </div>
 
-  <!-- Client Section -->
   <div class="user-section">
     <div class="section-header">Clients</div>
     <div style="overflow-x: auto;">
       <table class="user-table">
         <thead>
-        <tr>
-          <th>Email</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>Penalty Points</th>
-          <th>Actions</th>
-        </tr>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Penalty Points</th>
+            <th>Is Enabled</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let client of clients">
-          <td>{{ client.email }}</td>
-          <td>{{ client.firstName }} {{ client.lastName }}</td>
-          <td>{{ client.phoneNumber }}</td>
-          <td>{{ client.address.street }} {{ client.address.streetNumber }}, {{ client.address.postalCode }}
-            {{ client.address.city }}, {{ client.address.country }}
-          </td>
-          <td>{{ client.penaltyPoints || 0 }}</td>
-          <td>
-            <div class="user-actions">
-              <button *ngIf="client.isEnabled" (click)="enableUser(client.id, true)" class="btn btn-enable">
-                Enable
-              </button>
-              <button *ngIf="!client.isEnabled" (click)="enableUser(client.id, false)" class="btn btn-disable">
-                Disable
-              </button>
-              <button (click)="deleteUser(client.id)" class="btn btn-delete">Delete</button>
-            </div>
-          </td>
-        </tr>
+          <tr *ngFor="let client of clients">
+            <td>{{ client.email }}</td>
+            <td>{{ client.firstName }} {{ client.lastName }}</td>
+            <td>{{ client.phoneNumber }}</td>
+            <td>
+              {{ client.address.street }} {{ client.address.streetNumber }},
+              {{ client.address.postalCode }} {{ client.address.city }},
+              {{ client.address.country }}
+            </td>
+            <td>{{ client.penaltyPoints || 0 }}</td>
+            <td>{{ client.isEnabled ? 'Enabled' : 'Disabled' }}</td>
+            <td>
+              <div class="user-actions">
+                <button *ngIf="!client.isEnabled" (click)="enableUser(client.id, true)" class="btn btn-enable">
+                  Enable
+                </button>
+                <button *ngIf="client.isEnabled" (click)="enableUser(client.id, false)" class="btn btn-disable">
+                  Disable
+                </button>
+                <button (click)="deleteUser(client.id)" class="btn btn-delete">Delete</button>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -226,36 +226,38 @@
     <div style="overflow-x: auto;">
       <table class="user-table">
         <thead>
-        <tr>
-          <th>Email</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>Role</th>
-          <th>Actions</th>
-        </tr>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let worker of workers">
-          <td>{{ worker.email }}</td>
-          <td>{{ worker.firstName }} {{ worker.lastName }}</td>
-          <td>{{ worker.phoneNumber }}</td>
-          <td>{{ worker.address.street }} {{ worker.address.streetNumber }}, {{ worker.address.postalCode }}
-            {{ worker.address.city }}, {{ worker.address.country }}
-          </td>
-          <td>{{ roleTranslations[worker.role.name] }}</td>
-          <td>
-            <div class="user-actions">
-              <button *ngIf="worker.isEnabled" (click)="enableUser(worker.id, true)" class="btn btn-enable">
-                Enable
-              </button>
-              <button *ngIf="!worker.isEnabled" (click)="enableUser(worker.id, false)" class="btn btn-disable">
-                Disable
-              </button>
-              <button (click)="deleteUser(worker.id)" class="btn btn-delete">Delete</button>
-            </div>
-          </td>
-        </tr>
+          <tr *ngFor="let worker of workers">
+            <td>{{ worker.email }}</td>
+            <td>{{ worker.firstName }} {{ worker.lastName }}</td>
+            <td>{{ worker.phoneNumber }}</td>
+            <td>
+              {{ worker.address.street }} {{ worker.address.streetNumber }},
+              {{ worker.address.postalCode }} {{ worker.address.city }},
+              {{ worker.address.country }}
+            </td>
+            <td>{{ roleTranslations[worker.role.name] }}</td>
+            <td>
+              <div class="user-actions">
+                <button *ngIf="!worker.isEnabled" (click)="enableUser(worker.id, true)" class="btn btn-enable">
+                  Enable
+                </button>
+                <button *ngIf="worker.isEnabled" (click)="enableUser(worker.id, false)" class="btn btn-disable">
+                  Disable
+                </button>
+                <button (click)="deleteUser(worker.id)" class="btn btn-delete">Delete</button>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { Login } from '../model/auth.model';
+import { AuthenticationResponse, Login } from '../model/auth.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
@@ -37,21 +37,16 @@ export class LoginComponent {
   }
 
   login(): void {
-    // Mark all fields as touched to trigger validation messages
-    this.loginForm.markAllAsTouched();
-
-    // Check form validity before submission
     if (this.loginForm.invalid) {
       this.showErrorPopup('Please fill in all required fields correctly.');
       return;
     }
 
     const login: Login = {
-      email: this.loginForm.value.email || "",
-      password: this.loginForm.value.password || "",
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
     };
 
-    // Show loading indicator
     Swal.fire({
       title: 'Logging in...',
       didOpen: () => {
@@ -60,8 +55,7 @@ export class LoginComponent {
     });
 
     this.authService.login(login).subscribe({
-      next: () => {
-        // Close loading indicator and show success
+      next: (response: AuthenticationResponse) => {
         Swal.fire({
           icon: 'success',
           title: 'Login Successful!',
@@ -72,22 +66,24 @@ export class LoginComponent {
         });
       },
       error: (err: HttpErrorResponse) => {
-        // Handle different types of errors
-        let errorMessage = 'An unexpected error occurred. Please try again later.';
+        let errorMessage = 'An unexpected error occurred.';
+        let title = 'Login Failed';
 
         if (err.status === 401) {
-          errorMessage = 'Invalid email or password. Please try again.';
+          errorMessage = 'Invalid email or password.';
+        } else if (err.status === 403) {
+          title = 'Account Disabled';
+          errorMessage = 'Your account has been disabled. Please contact support.';
         } else if (err.status === 0) {
-          errorMessage = 'No connection to the server. Please check your internet connection.';
+          errorMessage = 'Unable to connect to server. Please check your connection.';
         }
 
-        // Show error popup
         Swal.fire({
           icon: 'error',
-          title: 'Login Failed',
+          title: title,
           text: errorMessage,
           confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Try Again'
+          confirmButtonText: 'OK'
         });
       }
     });

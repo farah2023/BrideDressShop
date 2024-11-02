@@ -13,6 +13,7 @@ export interface AuthenticationResponse {
   accessToken: string;
   expiresIn: string;
   refreshToken: string;
+  isEnabled: boolean;
 }
 
 export interface Address {

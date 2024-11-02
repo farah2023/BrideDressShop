@@ -25,19 +25,21 @@ export class AuthService {
     }
   }
 
+
   login(login: Login): Observable<AuthenticationResponse> {
     return this.http
       .post<AuthenticationResponse>(environment.apiHost + 'auth/login', login)
       .pipe(
-        tap((authenticationResponse) => {
-          this.tokenStorage.saveAccessToken(authenticationResponse.accessToken);
+        tap((response: AuthenticationResponse) => {
+          // Only store token and set current user if login is successful
+          // The HTTP interceptor will handle 401 and 403 errors
+          this.tokenStorage.saveAccessToken(response.accessToken);
           this.setCurrentUser();
         })
       );
   }
 
   setCurrentUser(): void {
-    //const jwtHelperService = new JwtHelperService();
     const accessToken = this.tokenStorage.getAccessToken() || "";
     const currentUser: CurrentUser = {
       email: this.getDecodedAccessToken(accessToken).sub,
@@ -48,7 +50,6 @@ export class AuthService {
   }
 
   getCurrentUser(): CurrentUser {
-    //const jwtHelperService = new JwtHelperService();
     const accessToken = this.tokenStorage.getAccessToken() || "";
     const currentUser: CurrentUser = {
       email: this.getDecodedAccessToken(accessToken).sub,
@@ -80,7 +81,7 @@ export class AuthService {
   }
   registerUser(user: UserRegistration): Observable<string> {
     return this.http.post(environment.apiHost + `users/register`, user, {
-      responseType: 'text'  // This is the key change
+      responseType: 'text'
     });
   }
 
@@ -93,7 +94,8 @@ export class AuthService {
     });
   }
   enableDisableUser(userId: number, isEnabled: boolean): Observable<any> {
-    return this.http.put(`api/users/update-status/${userId}`, { isEnabled });
+    const url = `${environment.apiHost}users/update-status/${userId}`;
+    return this.http.put(url, { isEnabled });
   }
 
 

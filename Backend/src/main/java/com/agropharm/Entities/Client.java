@@ -29,7 +29,7 @@ public class Client extends User{
         this.penaltyPoints = penaltyPointsSum;
     }
 
-    public Boolean getEnabled() {
+    public Boolean getIsEnabled() {
         return isEnabled;
     }
 

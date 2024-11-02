@@ -13,13 +13,12 @@ public class Deliverer extends User{
     @Column(name = "is_enabled")
     private Boolean isEnabled;
 
-    //datum registracije ili naziv firme za dostavu
 
     public Deliverer(){
 
     }
 
-    public Boolean getEnabled() {
+    public Boolean getIsEnabled() {
         return isEnabled;
     }
 
