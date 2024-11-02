@@ -7,13 +7,19 @@ import com.agropharm.repository.AddressRepository;
 import com.agropharm.repository.DelivererRepository;
 import com.agropharm.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Service
 public class DelivererService {
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private DelivererRepository delivererRepository;
     @Autowired
@@ -27,7 +33,9 @@ public class DelivererService {
         deliverer.setLastName(registrationDTO.lastName);
         deliverer.setEmail(registrationDTO.email);
         deliverer.setPhoneNumber(registrationDTO.phoneNumber);
-        deliverer.setPassword(registrationDTO.password);
+        String rawPassword = registrationDTO.password;
+        String hashedPassword = passwordEncoder.encode(registrationDTO.password);
+        deliverer.setPassword(hashedPassword);
         deliverer.setEnabled(true);
 
         Address address = new Address();
@@ -41,7 +49,14 @@ public class DelivererService {
         deliverer.setAddress(address);
         deliverer.setLastPasswordResetDate(new Timestamp(new Date().getTime()));
         deliverer.setRole(roleRepository.findByName("DELIVERER"));
+        emailService.sendWelcomeEmail(deliverer.getEmail(), deliverer.getFirstName(), rawPassword, "Deliverer");
         return delivererRepository.save(deliverer);
+    }
+    public void updateUserStatus(Integer userId, boolean isEnabled) {
+        Deliverer deliverer = delivererRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Deliverer not found"));
+        deliverer.setEnabled(isEnabled);
+        delivererRepository.save(deliverer);
     }
 
 }

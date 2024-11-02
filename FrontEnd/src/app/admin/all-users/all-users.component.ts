@@ -114,4 +114,43 @@ export class AllUsersComponent implements OnInit {
       }
     });
   }
+  enableUser(userId: number, isEnabled: boolean) {
+    // Show loading state
+    Swal.fire({
+      title: isEnabled ? 'Enabling User' : 'Disabling User',
+      text: 'Please wait...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    this.authService.enableDisableUser(userId, isEnabled).subscribe({
+      next: (response) => {
+        console.log('Response:', response);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: `User ${isEnabled ? 'Enabled' : 'Disabled'} Successfully`,
+          showConfirmButton: true,
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#28a745'
+        }).then(() => {
+          this.loadUsers(); // Reload the users list after confirmation
+        });
+      },
+      error: (error) => {
+        console.error('Error updating user status:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to update user status. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#d33'
+        });
+      }
+    });
+
+  }
+
 }

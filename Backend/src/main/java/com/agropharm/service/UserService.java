@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import javax.persistence.EntityNotFoundException;
+
 
 @Service
 public class UserService {
@@ -118,6 +120,13 @@ public class UserService {
         }
         userRepository.deleteById(userId);
     }
+
+
+    public User getUserById(Integer userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + userId));
+    }
+
 
 
 }

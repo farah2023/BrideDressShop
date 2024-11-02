@@ -92,5 +92,9 @@ export class AuthService {
       responseType: 'text'
     });
   }
+  enableDisableUser(userId: number, isEnabled: boolean): Observable<any> {
+    return this.http.put(`api/users/update-status/${userId}`, { isEnabled });
+  }
+
 
 }

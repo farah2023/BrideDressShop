@@ -1,6 +1,6 @@
 package com.agropharm.controller;
 
-import com.agropharm.Entities.User;
+import com.agropharm.Entities.*;
 import com.agropharm.dto.RegistrationDTO;
 import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
@@ -42,6 +42,7 @@ public class UserController {
         UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(user, new UserDTO());
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
+
 
     @PutMapping("/update")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, Principal principal) {
@@ -96,6 +97,30 @@ public class UserController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PutMapping("/update-status/{userId}")
+    public ResponseEntity<String> updateUserStatus(@PathVariable Integer userId, @RequestBody Map<String, Boolean> request) {
+        boolean isEnabled = request.get("isEnabled");
+        User user = userService.getUserById(userId); // Fetch the user entity
+
+        if (user instanceof Client) {
+            clientService.updateUserStatus(userId, isEnabled);
+        } else if (user instanceof Deliverer) {
+            delivererService.updateUserStatus(userId, isEnabled);
+        } else if (user instanceof Seller) {
+            sellerService.updateUserStatus(userId, isEnabled);
+        } else if (user instanceof Admin) {
+            adminService.updateUserStatus(userId, isEnabled);
+        } else {
+            System.out.println("User role not recognized for user ID: " + userId);
+            return new ResponseEntity<>("User role not recognized", HttpStatus.BAD_REQUEST);
+        }
+
+        System.out.println("User status updated successfully for user ID: " + userId + " to isEnabled: " + isEnabled);
+        return new ResponseEntity<>("User status updated successfully", HttpStatus.OK);
+    }
+
+
+
 
 
 }

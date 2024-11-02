@@ -105,6 +105,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+
     public Timestamp getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }
@@ -157,5 +158,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+    
 
 }
