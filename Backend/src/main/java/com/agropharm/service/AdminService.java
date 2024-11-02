@@ -7,13 +7,19 @@ import com.agropharm.repository.AddressRepository;
 import com.agropharm.repository.AdminRepository;
 import com.agropharm.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Service
 public class AdminService {
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private AdminRepository adminRepository;
     @Autowired
@@ -27,7 +33,9 @@ public class AdminService {
         admin.setLastName(registrationDTO.lastName);
         admin.setEmail(registrationDTO.email);
         admin.setPhoneNumber(registrationDTO.phoneNumber);
-        admin.setPassword(registrationDTO.password);
+        String rawPassword = registrationDTO.password;
+        String hashedPassword = passwordEncoder.encode(registrationDTO.password);
+        admin.setPassword(hashedPassword);
         admin.setSenior(registrationDTO.isSenior);
 
         Address address = new Address();
@@ -41,6 +49,13 @@ public class AdminService {
         admin.setAddress(address);
         admin.setLastPasswordResetDate(new Timestamp(new Date().getTime()));
         admin.setRole(roleRepository.findByName("ADMIN"));
+        emailService.sendWelcomeEmail(admin.getEmail(), admin.getFirstName(), rawPassword, "ADMIN");
         return adminRepository.save(admin);
+    }
+    public void updateUserStatus(Integer userId, boolean isEnabled) {
+        Admin admin = adminRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Admin not found"));
+        admin.setSenior(isEnabled);
+        adminRepository.save(admin);
     }
 }

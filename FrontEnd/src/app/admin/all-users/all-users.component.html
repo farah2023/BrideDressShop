@@ -1,4 +1,5 @@
 <style>
+  /* General styling */
   body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7fa;
@@ -10,6 +11,7 @@
     margin: 50px auto;
   }
 
+  /* Page header styling */
   .page-header {
     background: linear-gradient(135deg, #6c5ce7, #a55eea);
     border-radius: 15px;
@@ -42,6 +44,7 @@
     border-radius: 2px;
   }
 
+  /* Stats styling */
   .user-stats {
     display: flex;
     gap: 2rem;
@@ -71,6 +74,7 @@
     margin-right: 1rem;
   }
 
+  /* Media query adjustments */
   @media (max-width: 768px) {
     .page-header {
       flex-direction: column;
@@ -82,16 +86,7 @@
     }
   }
 
-  .user-image {
-    width: 100%;
-    height: 200px;
-    background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-    margin-bottom: 2rem;
-  }
-
+  /* User section and table styling */
   .user-section {
     background-color: #fff;
     border-radius: 15px;
@@ -134,6 +129,7 @@
     background-color: #f8f9fa;
   }
 
+  /* Button styling */
   .user-actions {
     display: flex;
     gap: 0.5rem;
@@ -150,13 +146,22 @@
     cursor: pointer;
   }
 
-  .btn-block {
-    background-color: #ffa502;
+  .btn-enable {
+    background-color: #28a745;
     color: white;
   }
 
-  .btn-block:hover {
-    background-color: #ff9f43;
+  .btn-enable:hover {
+    background-color: #218838;
+  }
+
+  .btn-disable {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .btn-disable:hover {
+    background-color: #c82333;
   }
 
   .btn-delete {
@@ -167,16 +172,6 @@
   .btn-delete:hover {
     background-color: #ff6b81;
   }
-
-  .btn-block {
-    background-color: #dc3545;
-    color: white;
-  }
-
-  .btn-unblock {
-    background-color: #28a745;
-    color: white;
-  }
 </style>
 
 <div class="container">
@@ -184,77 +179,83 @@
     <h1 class="page-title">User Management</h1>
   </div>
 
+  <!-- Client Section -->
   <div class="user-section">
     <div class="section-header">Clients</div>
     <div style="overflow-x: auto;">
       <table class="user-table">
         <thead>
-          <tr>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Penalty Points</th>
-            <th>Actions</th>
-          </tr>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Penalty Points</th>
+          <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let client of clients">
-            <td>{{ client.email }}</td>
-            <td>{{ client.firstName }} {{ client.lastName }}</td>
-            <td>{{ client.phoneNumber }}</td>
-            <td>{{ client.address.street }} {{ client.address.streetNumber }}, {{ client.address.postalCode }} {{
-              client.address.city }}, {{ client.address.country }}</td>
-            <td>{{ client.penaltyPoints || 0 }}</td>
-            <td>
-              <div class="user-actions">
-                <button class="btn">
-                  Block
-                </button>
-                <button class="btn btn-delete" (click)="deleteUser(client.id)">
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.email }}</td>
+          <td>{{ client.firstName }} {{ client.lastName }}</td>
+          <td>{{ client.phoneNumber }}</td>
+          <td>{{ client.address.street }} {{ client.address.streetNumber }}, {{ client.address.postalCode }}
+            {{ client.address.city }}, {{ client.address.country }}
+          </td>
+          <td>{{ client.penaltyPoints || 0 }}</td>
+          <td>
+            <div class="user-actions">
+              <button *ngIf="client.isEnabled" (click)="enableUser(client.id, true)" class="btn btn-enable">
+                Enable
+              </button>
+              <button *ngIf="!client.isEnabled" (click)="enableUser(client.id, false)" class="btn btn-disable">
+                Disable
+              </button>
+              <button (click)="deleteUser(client.id)" class="btn btn-delete">Delete</button>
+            </div>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
   </div>
 
+  <!-- Employee Section -->
   <div class="user-section">
     <div class="section-header">Employees</div>
     <div style="overflow-x: auto;">
       <table class="user-table">
         <thead>
-          <tr>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let worker of workers">
-            <td>{{ worker.email }}</td>
-            <td>{{ worker.firstName }} {{ worker.lastName }}</td>
-            <td>{{ worker.phoneNumber }}</td>
-            <td>{{ worker.address.street }} {{ worker.address.streetNumber }}, {{ worker.address.postalCode }} {{
-              worker.address.city }}, {{ worker.address.country }}</td>
-            <td>{{ roleTranslations[worker.role.name] }}</td>
-            <td>
-              <div class="user-actions">
-                <button class="btn">
-                  Block
-                </button>
-                <button class="btn btn-delete" (click)="deleteUser(worker.id)">
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+        <tr *ngFor="let worker of workers">
+          <td>{{ worker.email }}</td>
+          <td>{{ worker.firstName }} {{ worker.lastName }}</td>
+          <td>{{ worker.phoneNumber }}</td>
+          <td>{{ worker.address.street }} {{ worker.address.streetNumber }}, {{ worker.address.postalCode }}
+            {{ worker.address.city }}, {{ worker.address.country }}
+          </td>
+          <td>{{ roleTranslations[worker.role.name] }}</td>
+          <td>
+            <div class="user-actions">
+              <button *ngIf="worker.isEnabled" (click)="enableUser(worker.id, true)" class="btn btn-enable">
+                Enable
+              </button>
+              <button *ngIf="!worker.isEnabled" (click)="enableUser(worker.id, false)" class="btn btn-disable">
+                Disable
+              </button>
+              <button (click)="deleteUser(worker.id)" class="btn btn-delete">Delete</button>
+            </div>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>

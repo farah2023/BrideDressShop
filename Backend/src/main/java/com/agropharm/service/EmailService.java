@@ -35,4 +35,19 @@ public class EmailService {
             return false;
         }
     }
+
+    public void sendWelcomeEmail(String to, String name, String password, String role) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Welcome to Greeno!");
+        message.setText("Hello " + name + ",\n\n"
+                + "Welcome to Greeno! Your account has been successfully created.\n\n"
+                + "Here are your account details:\n"
+                + "Role: " + role + "\n"
+                + "Password: " + password + "\n\n"
+                + "Best Regards,\n"
+                + "The Greeno Team");
+        mailSender.send(message);
+    }
+
 }
