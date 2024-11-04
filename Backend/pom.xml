@@ -8,11 +8,11 @@
 		<version>2.7.17</version> <!--3.2.8-->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.agropharm</groupId>
-	<artifactId>AgroPharm</artifactId>
+	<groupId>com.GREENO</groupId>
+	<artifactId>Greeno</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AgroPharm</name>
-	<description>AgroPharmacy</description>
+	<name>Greeno</name>
+	<description>Greeno</description>
 	<url/>
 	<licenses>
 		<license/>
