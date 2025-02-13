@@ -49,13 +49,14 @@ i.fas {
 }
 
 .notifications-header {
-  background: linear-gradient(135deg, #02e94f 0%, #009249 100%);
+  background: linear-gradient(135deg, #A7887A 0%, #452e13 100%);
   border-radius: 20px;
   padding: 2rem;
   margin-bottom: 2rem;
   color: white;
   position: relative;
   overflow: hidden;
+  margin-top: 120px;
 }
 
 .notifications-header::before {
@@ -138,17 +139,17 @@ i.fas {
 
 .icon-info {
   background: #eef2ff;
-  color: #6366f1;
+  color: #a57d3d;
 }
 
 .icon-success {
   background: #ecfdf5;
-  color: #02e94f;
+  color: #A7887A;
 }
 
 .icon-warning {
   background: #fffbeb;
-  color: #f59e0b;
+  color: #a28b64;
 }
 
 .notification-text {
@@ -183,8 +184,8 @@ i.fas {
 }
 
 .mark-read-btn {
-  background: #ecfdf5;
-  color: #02e94f;
+  background: #E5D9D0;
+  color: #A7887A;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -196,14 +197,14 @@ i.fas {
 }
 
 .mark-read-btn:hover {
-  background: #d1fae5;
+  background: #E5D9D0;
   transform: translateY(-1px);
 }
 
 .unread-indicator {
   width: 8px;
   height: 8px;
-  background: #02e94f;
+  background: #A7887A;
   border-radius: 50%;
   margin-right: 0.5rem;
 }

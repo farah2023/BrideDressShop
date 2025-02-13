@@ -1,10 +1,11 @@
 body {
     background-color: #f8f9fa;
+    margin-top: 100px !important;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .page-header {
-    background: linear-gradient(135deg, #02e94f 0%, #009249 100%);
+    background: linear-gradient(135deg, #B68E70 0%, #A47864 100%);
     padding: 2rem;
     border-radius: 20px;
     margin-bottom: 2rem;
@@ -16,7 +17,7 @@ body {
 
 .add-product-btn {
     background: white;
-    color: #1bbd67;
+    color: #B68E70;
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 10px;
@@ -61,7 +62,7 @@ body {
     left: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #02e94f;
+    color: #B68E70;
     transition: all 0.3s ease;
 }
 
@@ -76,14 +77,14 @@ body {
 }
 
 .search-input:focus {
-    border-color: #02e94f;
+    border-color: #B68E70;
     box-shadow: 0 0 0 4px rgba(2, 233, 79, 0.1);
     outline: none;
 }
 
 .search-input:focus+.search-icon {
     transform: translateY(-50%) scale(1.1);
-    color: #009249;
+    color: #A47864;
 }
 
 .category-wrapper {
@@ -95,7 +96,7 @@ body {
     left: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #02e94f;
+    color: #B68E70;
     transition: all 0.3s ease;
     pointer-events: none;
 }
@@ -113,14 +114,14 @@ body {
 }
 
 .category-select:focus {
-    border-color: #02e94f;
+    border-color: #B68E70;
     box-shadow: 0 0 0 4px rgba(2, 233, 79, 0.1);
     outline: none;
 }
 
 .category-select:focus+.category-icon {
     transform: translateY(-50%) scale(1.1);
-    color: #009249;
+    color: #A47864;
 }
 
 .select-arrow {
@@ -128,20 +129,20 @@ body {
     right: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #02e94f;
+    color: #B68E70;
     transition: all 0.3s ease;
     pointer-events: none;
 }
 
 .category-select:focus~.select-arrow {
     transform: translateY(-50%) rotate(180deg);
-    color: #009249;
+    color: #A47864;
 }
 
 .search-title {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #009249;
+    color: #A47864;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
@@ -228,7 +229,7 @@ body {
 }
 
 .btn-cart {
-    background: #4fc459;
+    background: #A7887A;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -238,7 +239,7 @@ body {
 }
 
 .btn-cart:hover {
-    background: #3cc075;
+    background: #A7887A;
     transform: translateY(-2px);
 }
 

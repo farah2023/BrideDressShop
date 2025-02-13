@@ -5,7 +5,8 @@ body {
 
 .registration-container {
     max-width: 900px;
-    margin: 2rem auto;
+    margin: 120px auto;
+
 }
 
 .form-wrapper {
@@ -16,7 +17,7 @@ body {
 }
 
 .form-header {
-    background: linear-gradient(135deg, #63f195 0%, #009945 100%);
+    background: linear-gradient(135deg, #A7887A 0%, #957C71 100%);
     padding: 2rem;
     color: white;
     text-align: center;
@@ -35,7 +36,7 @@ body {
 
 .form-container {
     padding: 2rem;
-    background: linear-gradient(135deg, #e6ffe8 0%, #adffd2 100%);
+    background: linear-gradient(135deg, #957C71 0%,#F5EDD6  100%);
 }
 
 .form-control {
@@ -48,7 +49,7 @@ body {
 
 .form-control:focus {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    border-color: #00922e;
+    border-color: #957C71;
 }
 
 .form-label {
@@ -72,7 +73,7 @@ body {
 }
 
 .btn-register {
-    background: #5bc86f;
+    background: #A7887A;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -84,7 +85,7 @@ body {
 }
 
 .btn-register:hover {
-    background: #12a033;
+    background: #957C71;
     transform: translateY(-1px);
 }
 
@@ -94,7 +95,7 @@ body {
 
 select.form-control {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236366F1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236366F1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); */
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1em;

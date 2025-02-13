@@ -3,27 +3,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  /* Adjust as needed */
+  padding: 10px 10px;
+  background-color: #fff;
+  height: 0% !important;
+
 }
 
 /* Logo section */
 .logo_section {
   flex: 0 0 auto;
+  
   /* Don't grow, don't shrink, auto basis */
 }
 
 .logo img {
-  max-height: 50px;
-  /* Adjust based on your logo size */
-  width: auto;
+  /* max-height: 50px;
+  width: auto; */
+  margin-left: -100px;
+  margin-top: -10px;
+
 }
 
 /* Menu area */
 .menu-area {
   flex: 1 1 auto;
-  margin-top: 7px;
   display: flex;
   justify-content: flex-end;
 }
@@ -32,6 +35,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-top: 70px;
+
 }
 
 .menu-area-main {
@@ -51,7 +56,7 @@
 
 .menu-area-main li a {
   display: block;
-  padding: 10px 15px;
+
   text-decoration: none;
   color: #333;
   /* Adjust color as needed */
@@ -62,7 +67,7 @@
 /* Highlight active item */
 .menu-area-main li.active a {
   font-weight: bold;
-  color: #4CAF50;
+  color: #A7887A;
   /* Adjust color to match your green theme */
 }
 

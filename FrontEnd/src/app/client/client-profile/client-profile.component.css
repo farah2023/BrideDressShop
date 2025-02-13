@@ -8,11 +8,11 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin-top: 2rem;
+    margin-top: 120px;
 }
 
 .profile-image-section {
-    background: linear-gradient(135deg, #59e86c 0%, #00a153 100%);
+    background: linear-gradient(135deg, #B68E70 0%, #947056 100%);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ body {
 
 .form-control:focus {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    border-color: #6366F1;
+    border-color: #4c3313;
 }
 
 .form-label {
@@ -59,13 +59,13 @@ body {
 
 
 .btn-edit {
-    background: #49bb6b;
+    background: #B68E70;
     color: white;
     border: none;
 }
 
 .btn-edit:hover {
-    background: #007e46;
+    background: #947056;
     color: white;
 }
 
@@ -74,6 +74,6 @@ body {
     font-weight: 600;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #6366F1;
+    border-bottom: 2px solid #4c3313;
     display: inline-block;
 }

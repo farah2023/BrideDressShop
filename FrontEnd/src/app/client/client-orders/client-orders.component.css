@@ -55,12 +55,12 @@ h2 {
 }
 
 .bg-success {
-  background: linear-gradient(45deg, #43cea2, #189d3e);
+  background: linear-gradient(45deg, #947056, #D5C0A5);
   color: white;
 }
 
 .bg-warning {
-  background: linear-gradient(45deg, #ffd452, #ff7b54);
+  background: linear-gradient(45deg, #D5C0A5, #947056);
   color: #2c3e50;
 }
 
@@ -90,12 +90,12 @@ h2 {
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(45deg, #947056 0%, #B68E70 100%);
   color: white;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(45deg, #00f2fe 0%, #4facfe 100%);
+  background: linear-gradient(45deg, #B68E70 0%, #947056 100%);
 }
 
 .list-group-item {

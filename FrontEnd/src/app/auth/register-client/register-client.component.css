@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background: #f9f9f9;
 }
 
@@ -20,18 +20,19 @@ body {
     position: relative;
     width: 1300px;
     height: 800px;
-    background: linear-gradient(90deg, #54880e, #f2f2f2);
+    background: linear-gradient(90deg, #A67057, #f2f2f2);
     border-radius: 50px;
     box-shadow: 0 0 60px rgba(0, 0, 0, .3);
     padding: 60px;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    margin: 120px 70px;
+    /* overflow: hidden; */
 }
 
 .wrapper .text-right {
     position: absolute;
-    top: 60px;
+    top: 30px;
     right: 180px;
     color: #f2f2f2;
     text-shadow: 0 0 20px rgba(0, 0, 0, .3);
@@ -41,7 +42,7 @@ body {
 }
 
 .wrapper .text-right::before {
-    content: 'Back';
+    content: 'Back to';
     position: absolute;
     top: 60px;
     right: -50px;
@@ -49,10 +50,10 @@ body {
 
 .wrapper img {
     position: absolute;
-    right: -40px;
-    bottom: -160px;
+    bottom: -50px;
+    right: -70px;
     width: 60%;
-    transform: rotate(260deg);
+
 }
 
 .form-wrapper {
@@ -139,7 +140,7 @@ button {
     border-radius: 40px;
     cursor: pointer;
     font-size: 1em;
-    color: #54880e;
+    color: #947056;
     font-weight: 500;
 }
 
